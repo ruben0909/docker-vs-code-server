@@ -22,17 +22,17 @@ RUN \
     net-tools \
     netcat \
     sudo && \
-  echo "**** install code-server ****" && \
+  echo "**** install vs-code-server ****" && \
   if [ -z ${CODE_RELEASE+x} ]; then \
-    CODE_RELEASE=$(curl -sX GET https://api.github.com/repos/coder/code-server/releases/latest \
+    CODE_RELEASE=$(curl -sX GET https://api.github.com/repos/microsoft/vscode/releases/latest \
       | awk '/tag_name/{print $4;exit}' FS='[""]' | sed 's|^v||'); \
   fi && \
-  mkdir -p /app/code-server && \
+  mkdir -p /app/vs-code-server && \
   curl -o \
-    /tmp/code-server.tar.gz -L \
-    "https://github.com/coder/code-server/releases/download/v${CODE_RELEASE}/code-server-${CODE_RELEASE}-linux-arm64.tar.gz" && \
-  tar xf /tmp/code-server.tar.gz -C \
-    /app/code-server --strip-components=1 && \
+    /tmp/vs-code-server.tar.gz -L \
+    "https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-arm64" && \
+  tar xf /tmp/vs-code-server.tar.gz -C \
+    /app/vs-code-server --strip-components=1 && \
   echo "**** clean up ****" && \
   apt-get clean && \
   rm -rf \

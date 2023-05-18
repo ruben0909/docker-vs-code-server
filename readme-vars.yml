@@ -1,9 +1,9 @@
 ---
 
 # project information
-project_name: code-server
-project_url: "https://coder.com"
-project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/code-server-banner.png"
+project_name: vs-code-server
+project_url: "https://code.visualstudio.com/docs/remote/vscode-server"
+project_logo: "https://raw.githubusercontent.com/microsoft/vscode/main/resources/server/code-512.png"
 project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) is VS Code running on a remote server, accessible through the browser.
 
 - Code on your Chromebook, tablet, and laptop with a consistent dev environment.
@@ -17,7 +17,7 @@ project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) is VS Code ru
 - All intensive computation runs on your server.
 
 - You're no longer running excess instances of Chrome."
-project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+project_lsio_github_repo_url: "https://github.com/ruben0909/docker-{{ project_name }}"
 
 # supported architectures
 available_architectures:
@@ -38,7 +38,6 @@ param_volumes:
   - { vol_path: "/config", vol_host_path: "/path/to/appdata/config", desc: "Contains all relevant configuration files." }
 param_usage_include_ports: true
 param_ports:
-  - { external_port: "8443", internal_port: "8443", port_desc: "web gui" }
 param_usage_include_env: true
 param_env_vars:
   - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London" }
@@ -46,12 +45,10 @@ param_env_vars:
 # optional container parameters
 opt_param_usage_include_env: true
 opt_param_env_vars:
-  - { env_var: "PASSWORD", env_value: "password", desc: "Optional web gui password, if `PASSWORD` or `HASHED_PASSWORD` is not provided, there will be no auth." }
-  - { env_var: "HASHED_PASSWORD", env_value: "", desc: "Optional web gui password, overrides `PASSWORD`, instructions on how to create it is below." }
-  - { env_var: "SUDO_PASSWORD", env_value: "password", desc: "If this optional variable is set, user will have sudo access in the code-server terminal with the specified password." }
+  - { env_var: "SUDO_PASSWORD", env_value: "password", desc: "If this optional variable is set, user will have sudo access in the vs-code-server terminal with the specified password." }
   - { env_var: "SUDO_PASSWORD_HASH", env_value: "", desc: "Optionally set sudo password via hash (takes priority over `SUDO_PASSWORD` var). Format is `$type$salt$hashed`." }
-  - { env_var: "PROXY_DOMAIN", env_value: "code-server.my.domain", desc: "If this optional variable is set, this domain will be proxied for subdomain proxying. See [Documentation](https://github.com/cdr/code-server/blob/master/docs/FAQ.md#sub-domains)" }
-  - { env_var: "DEFAULT_WORKSPACE", env_value: "/config/workspace", desc: "If this optional variable is set, code-server will open this directory by default" }
+  - { env_var: "MACHINE_NAME", env_value: "vs-code-server", desc: "If this optional variable is set, the machine will be named with this" }
+  - { env_var: "DEFAULT_WORKSPACE", env_value: "/config/workspace", desc: "If this optional variable is set, vs-code-server will open this directory by default" }
 
 optional_block_1: false
 optional_block_1_items: ""
@@ -68,9 +65,9 @@ app_setup_block: |
   git config --global user.email "email address"
   ```
 
-  ### Hashed code-server password
+  ### Hashed vs-code-server password
 
-  How to create the [hashed password](https://github.com/cdr/code-server/blob/master/docs/FAQ.md#can-i-store-my-password-hashed).
+  How to create the [hashed password](https://github.com/cdr/vs-code-server/blob/master/docs/FAQ.md#can-i-store-my-password-hashed).
 
 
 # changelog

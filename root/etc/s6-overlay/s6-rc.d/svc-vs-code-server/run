@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bash
+
+if [ -z ${MACHINE_NAME+x} ]; then
+    MACHINE_NAME_ARG="--random-name"
+else
+    MACHINE_NAME_ARG="--name=${MACHINE_NAME}"
+fi
+
+exec \
+    s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z 127.0.0.1 8443" \
+        s6-setuidgid abc \
+            /app/vs-code-server/code tunnel \
+                --disable-telemetry \
+                --accept-server-license-terms \
+                --no-sleep \
+                "${MACHINE_NAME_ARG}" 
+                # "${DEFAULT_WORKSPACE:-/config/workspace}"
+

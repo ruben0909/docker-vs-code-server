@@ -1,4 +1,4 @@
-# Contributing to code-server
+# Contributing to vs-code-server
 
 ## Gotchas
 
@@ -27,7 +27,7 @@ If you would like to change our readme, please __**do not**__ directly edit the 
 Instead edit the [readme-vars.yml](https://github.com/linuxserver/docker-code-server/edit/master/readme-vars.yml).
 
 These variables are used in a template for our [Jenkins Builder](https://github.com/linuxserver/docker-jenkins-builder) as part of an ansible play.
-Most of these variables are also carried over to [docs.linuxserver.io](https://docs.linuxserver.io/images/docker-code-server)
+Most of these variables are also carried over to [docs.linuxserver.io](https://docs.linuxserver.io/images/docker-vs-code-server)
 
 ### Fixing typos or clarify the text in the readme
 
@@ -97,12 +97,12 @@ If you are proposing additional packages to be added, ensure that you added the 
 ### Testing your changes
 
 ```bash
-git clone https://github.com/linuxserver/docker-code-server.git
-cd docker-code-server
+git clone https://github.com/linuxserver/docker-vs-code-server.git
+cd docker-vs-code-server
 docker build \
   --no-cache \
   --pull \
-  -t linuxserver/code-server:latest .
+  -t linuxserver/vs-code-server:latest .
 ```
 
 The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
@@ -115,7 +115,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Update the changelog
 
-If you are modifying the Dockerfiles or any of the startup scripts in [root](https://github.com/linuxserver/docker-code-server/tree/master/root), add an entry to the changelog
+If you are modifying the Dockerfiles or any of the startup scripts in [root](https://github.com/linuxserver/docker-vs-code-server/tree/master/root), add an entry to the changelog
 
 ```yml
 changelogs:
